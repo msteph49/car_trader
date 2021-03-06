@@ -1,3 +1,5 @@
+require 'faker'
+
 10.times do
     makemodel = Faker::Vehicle.make_and_model
     array = makemodel.split(" ")
@@ -8,12 +10,12 @@
     random_num = Faker::Number.number(digits: 2)
     # username = (first_initial + last_name + random_num)
     username = [first_initial, last_name, random_num].join.strip
-    car = Vehicle.create(make: make, model: model, year: Faker::Vehicle.year, 
+    user = User.create(user_name: username, name: Faker::Name.name, email: Faker::Internet.email,
+    password: Faker::Internet.password)
+    car = user.vehicles.create!(make: make, model: model, year: Faker::Vehicle.year, 
             price: Faker::Commerce.price(range:1500..100000, as_string: false),
-            description: Faker::Vehicle.standard_specs, color: Faker::Vehicle.color,
-            mileage: Faker::Vehicle.)
-    user = User.create(user_name: username, name: name, email: Faker::Internet.email,
-                password: Faker::Internet.password)
+            description: Faker::Vehicle.standard_specs.join(" "), color: Faker::Vehicle.color,
+            mileage: Faker::Vehicle.mileage)
 end
 
     # t.string "user_name"

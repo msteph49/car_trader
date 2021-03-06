@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
 
+    before ['/signup', '/login'] do 
+        unless current_user.nil?
+            flash[:notice] = "You've already logged in"
+            redirect '/'
+        end
+    end
+
     get'/signup' do
-        flash[:message] = "Hello!"
         erb :"users/signup"
     end
 

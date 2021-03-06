@@ -12,6 +12,8 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'sinatra-flash'
+gem 'faker'
+gem 'carrierwave'
 
 group :test do
   gem 'rspec'
