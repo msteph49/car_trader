@@ -6,12 +6,15 @@
     first_initial = Faker::Name.initials(number:1)
     last_name = Faker::Name.last_name
     random_num = Faker::Number.number(digits: 2)
-    username = (first_initial + last_name + random_num)
+    # username = (first_initial + last_name + random_num)
+    username = [first_initial, last_name, random_num].join.strip
     car = Vehicle.create(make: make, model: model, year: Faker::Vehicle.year, 
             price: Faker::Commerce.price(range:1500..100000, as_string: false),
             description: Faker::Vehicle.standard_specs, color: Faker::Vehicle.color,
             mileage: Faker::Vehicle.)
-    user = User.create(user_name: username, name: )
+    user = User.create(user_name: username, name: name, email: Faker::Internet.email,
+                password: Faker::Internet.password)
+end
 
     # t.string "user_name"
     # t.string "name"
