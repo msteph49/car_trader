@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_05_031827) do
+ActiveRecord::Schema.define(version: 2021_03_06_155638) do
 
   create_table "users", force: :cascade do |t|
     t.string "user_name"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2021_03_05_031827) do
     t.integer "year"
     t.float "price"
     t.text "description"
+    t.string "color"
+    t.string "mileage"
   end
 
 end
