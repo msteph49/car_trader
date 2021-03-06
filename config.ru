@@ -4,6 +4,7 @@ require './config/environment'
 #   raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
 # end
 use UsersController
+use VehiclesController
 run ApplicationController
 # if you want to add additional controllers use
 # use controller_name
