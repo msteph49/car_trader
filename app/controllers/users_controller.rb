@@ -1,4 +1,6 @@
+require 'pry'
 class UsersController < ApplicationController
+
 
     before ['/signup', '/login'] do 
         unless current_user.nil?
@@ -8,7 +10,7 @@ class UsersController < ApplicationController
     end
 
     get'/signup' do
-        erb :"users/signup"
+        erb :'users/signup'
     end
 
     post '/signup' do
@@ -24,7 +26,7 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
-        erb :"users/login"
+        erb :'users/login'
     end
 
     post '/login' do
@@ -37,12 +39,23 @@ class UsersController < ApplicationController
 
         if @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            redirect '/'
+            redirect '/vehicles'
         else 
             flash[:message] = "Password Invalid"
             redirect '/login'
         end
     end
+
+
+    #     # binding.pry
+    #     @user = current_user
+    #         erb: '/account'
+    #     # if @user.id == session[:user_id]
+    #     #     redirect '/account/@user.id'
+    #     # else
+    #     #     redirect '/index'
+    #     # end
+    # end
 
     get '/logout' do 
         session.clear

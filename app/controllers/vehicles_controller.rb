@@ -9,16 +9,16 @@ class VehiclesController < ApplicationController
 
     get '/vehicles' do
         @vehicles = Vehicle.all
-        erb :"vehicles/index"
+        erb :'vehicles/index'
     end
 
     get '/vehicles/new' do
-        erb :"vehicles/new"
+        erb :'vehicles/new'
     end 
 
     get '/vehicles/:id' do
         @vehicle = Vehicle.find(params[:id]) 
-        erb :"vehicles/show"
+        erb :'vehicles/show'
     end
 
     post '/vehicles/create' do 
@@ -29,7 +29,17 @@ class VehiclesController < ApplicationController
             redirect "/vehicles/#{@vehicle.id}"
         else 
             flash[:message] = @vehicle.errors.full_messages.join(" ") # Fix later on
-            redirect "/vehicles/new"
+            redirect '/vehicles/new'
+        end
+    end
+
+    get '/vehicles/:id/edit' do
+        
+        @vehicle = Vehicle.find(params[:id])
+        if @vehicle.user_id == session[:user_id]
+            erb :'/vehicles/edit'
+        else
+            puts "NA"
         end
     end
 

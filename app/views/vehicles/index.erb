@@ -1,0 +1,17 @@
+<h1>Vehicles</h1>
+
+  <% @vehicles.each_slice(1) do |vehicle| %>
+    <div class="row mt-4 mb-4">
+    <% vehicle.each do |vehicle| %>
+        <div class="col-sm-6 col-lg-4 card">
+        <img class="img-properties card-img-top"  src="<%= vehicle.picture_url %>" />
+          <div class="card-body">
+            <h5 class="card-title"><%=vehicle.make %>, <%=vehicle.model %></h5>
+              <h6 class="card-text">$<%=vehicle.price %>, <%= vehicle.mileage %> miles</h6>
+              <a href="/vehicles/<%= vehicle.id %>" class="btn btn-primary">See Details</a>
+          </div>
+
+        </div>
+    <% end %>
+    </div>
+  <% end %>

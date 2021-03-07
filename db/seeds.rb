@@ -11,7 +11,7 @@ require 'faker'
     # username = (first_initial + last_name + random_num)
     username = [first_initial, last_name, random_num].join.strip
     user = User.create(user_name: username, name: Faker::Name.name, email: Faker::Internet.email,
-    password: Faker::Internet.password)
+    password: "1234")
     car = user.vehicles.create!(make: make, model: model, year: Faker::Vehicle.year, 
             price: Faker::Commerce.price(range:1500..100000, as_string: false),
             description: Faker::Vehicle.standard_specs.join(" "), color: Faker::Vehicle.color,

@@ -1,13 +1,14 @@
-<h1>Login</h1>
+<h1>List Your Vehicle</h1>
+<h2>Please fill out the information below</h2>
 
-<form action='/vehicles/create' method="post" enctype="multipart/form-data">
-    Make: <input type="text" name="make"><br />
-    Model: <input type="text" name="model"><br />
-    Year: <input type="number" name="year"><br />
-    Price: <input type="number" name="price", step="1.00"><br />
+<form action='/vehicles/create' method="post">
+    Make: <input type="text" name="make"><br/>
+    Model: <input type="text" name="model"><br/>
+    Year: <input type="number" name="year"><br/>
+    Price: <input type="number" name="price", step="1.00"><br/>
     Mileage: <input type="number" name="mileage"><br />
-    Color: <input type="text" name="color"><br />
-    Description: <input type="text_area" name="description"><br />
+    Color: <input type="text" name="color"><br/>
+    Description: <input type="text_area" name="description"><br/>
     File: <input type="file" name="picture"><br />
     <input type=submit value="Submit"><br />
 </form>
