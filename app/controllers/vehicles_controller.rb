@@ -1,6 +1,6 @@
 class VehiclesController < ApplicationController
 
-    before ['/vehicles/create'] do 
+    before ['/vehicles/create', '/vehicles/new'] do 
         if current_user.nil?
             flash[:notice] = 'Login required.'
             redirect '/login'
@@ -9,12 +9,17 @@ class VehiclesController < ApplicationController
 
     get '/vehicles' do
         @vehicles = Vehicle.all
-        erb :vehicles/index
+        erb :"vehicles/index"
     end
 
-    get '/vehicles/create' do
-        
+    get '/vehicles/new' do
+        erb :"vehicles/new"
     end 
+
+    get '/vehicles/:id' do
+        @vehicle = Vehicle.find(params[:id]) 
+        erb :"vehicles/show"
+    end
 
     post '/vehicles/create' do 
         @vehicle = current_user.vehicles.create(params)
@@ -26,6 +31,10 @@ class VehiclesController < ApplicationController
             flash[:message] = @vehicle.errors.full_messages.join(" ") # Fix later on
             redirect "/vehicles/new"
         end
+    end
+
+    delete 'vehicles/:id' do 
+        @vehicle = current_user.vehicles.find(params[:id])
     end
 
 end

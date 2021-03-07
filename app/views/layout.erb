@@ -15,12 +15,7 @@
   </head>
   <body>
     <div class="wrapper">
-      <% flash.keys.each do |type| %>
-        <div data-alert class="flash <%= type %> alert-box radius">
-          <%= flash[type] %>
-        </div>
-      <% end %>
-      
+        <%= erb :"shared/_messages" %>
         <%= yield %>
 
       <footer class="branding">

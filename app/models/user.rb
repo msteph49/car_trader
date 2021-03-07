@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
     # validates :user_name, format: { with: // }
 
+    def to_s
+        "@#{user_name}"
+    end
+
 end
