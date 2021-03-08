@@ -1,21 +1,21 @@
 <h1>Edit Vehicle</h1>
-    <form action="/vehicles/<%=@vehicle.id%>" method="post">
-        <input type="hidden" name="_method" value="patch">
+    <form action="/vehicles/<%=@vehicle.id%>" method="post" enctype='multipart/form-data'>
+        <input type="hidden" name="_method" value="put">
     <label>Make:</label>
-    <input type="text" name="vehicle[make]" value="<%=@vehicle.make%>">    
+    <input type="text" name="vehicle[make]" value="<%=@vehicle.make%>"><br/>   
     <label>Model:</label>
-    <input type="text" name="vehicle[model]" value="<%=@vehicle.model%>">
+    <input type="text" name="vehicle[model]" value="<%=@vehicle.model%>"><br/>
     <label>Year:</label>
-    <input type="integer" name="vehicle[year]" value="<%=@vehicle.year%>">
+    <input type="integer" name="vehicle[year]" value="<%=@vehicle.year%>"><br/>
     <label>Price:</label>
-    <input type="float" name="vehicle[price]" value="<%=@vehicle.price%>">
+    <input type="float" name="vehicle[price]" value="<%=@vehicle.price%>"><br/>
     <label>Mileage:</label>
-    <input type="text" name="vehicle[mileage]" value="<%=@vehicle.mileage%>">
+    <input type="text" name="vehicle[mileage]" value="<%=@vehicle.mileage%>"><br/>
     <label>Color:</label>
-    <input type="text" name="vehicle[color]" value="<%=@vehicle.color%>">
+    <input type="text" name="vehicle[color]" value="<%=@vehicle.color%>"><br/>
     <label>Options:</label>
-    <%# <input type="text" name="vehicle[destription]" value="<%=@vehicle.destription%>">
-    <%# <label>Image:</label>
-    <input type="file" name="picture"><br />
-    <input type=submit value="Submit"><br /> %> %>
+    <input type="text" name="vehicle[description]" value="<%=@vehicle.description%>"><br/>
+    <label>Image:</label>
+    <input type="file" name="vehicle[picture]"><br/>
+    <input type=submit value="Submit"><br/>
     </form>

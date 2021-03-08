@@ -1,1 +1,10 @@
+
 <h1>Welcome</h1>
+
+<h2>Your listing</h2>
+<% @user.vehicles.each do |vehicle| %>
+<p><%= erb :"vehicles/_vehicle", locals:{user: @user, vehicle: vehicle} %></p>
+
+<% end %>
+
+<a href="/vehicles/new">List Your Vehicle</a>

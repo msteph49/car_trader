@@ -8,6 +8,12 @@ class UsersController < ApplicationController
             redirect '/'
         end
     end
+    before ['/account'] do 
+        unless current_user
+            flash[:notice] = "You need to login"
+            redirect '/login'
+        end
+    end
 
     get'/signup' do
         erb :'users/signup'
@@ -46,7 +52,10 @@ class UsersController < ApplicationController
         end
     end
 
-
+    get '/account' do
+        @user = current_user
+        erb :'users/account'
+    end
     #     # binding.pry
     #     @user = current_user
     #         erb: '/account'

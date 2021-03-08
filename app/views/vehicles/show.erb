@@ -1,18 +1,2 @@
-
-<img src="<%=  @vehicle.picture_url %>"><br/>
-<h3>Make: <%= @vehicle.make %></h3>
-<h3>Model: <%= @vehicle.model %></h3>
-<h3>Price: <%= @vehicle.price %></h3>
-<h4>Mileage: <%= @vehicle.mileage %></h4>
-<h4>Color: <%= @vehicle.color %></h4>
-<h4>Features: <%= @vehicle.description %></h4>
-<h4>Owner Contact Info:</h4>
-<h4><% owner_id = @vehicle.user_id %></h4>
-<h4><%= @user %></h4>
-<% if current_user.id == @vehicle.user_id %>
-<form action='/vehicles/edit' method="post">
-<input type=submit value="Edit">
-</form>
-<% end %>
-
+<%= erb :"vehicles/_vehicle", locals:{user: @user, vehicle: @vehicle} %>
 

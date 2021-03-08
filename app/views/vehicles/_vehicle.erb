@@ -1,0 +1,16 @@
+<img src="<%=  vehicle.picture_url %>"><br/>
+<h3>Make: <%= vehicle.make %></h3>
+<h3>Model: <%= vehicle.model %></h3>
+<h3>Price: <%= vehicle.price %></h3>
+<h4>Mileage: <%= vehicle.mileage %></h4>
+<h4>Color: <%= vehicle.color %></h4>
+<h4>Features: <%= vehicle.description %></h4>
+<h4>Owner Contact Info:</h4>
+<h4><%= vehicle.user.email %></h4>
+<% if session[:user_id] == vehicle.user_id %>
+<a href="/vehicles/<%= vehicle.id %>/edit">Edit</a>
+<form action="/vehicles/<%=vehicle.id %>" method="post" >
+  <input type="hidden" name="_method" value="delete">
+  <button type="sumbit" onclick="return confirm('Deleting list will permenantly listing and cannot but undone. Are you sure you want to proceed?');">Delete</button>
+</form>
+<% end %>

@@ -17,6 +17,7 @@ class VehiclesController < ApplicationController
     end 
 
     get '/vehicles/:id' do
+        @user = current_user
         @vehicle = Vehicle.find(params[:id]) 
         erb :'vehicles/show'
     end
@@ -33,18 +34,61 @@ class VehiclesController < ApplicationController
         end
     end
 
-    get '/vehicles/:id/edit' do
-        
-        @vehicle = Vehicle.find(params[:id])
-        if @vehicle.user_id == session[:user_id]
-            erb :'/vehicles/edit'
+    get "/vehicles/:id/edit" do 
+        @vehicle = current_user.vehicles.find(params[:id])
+    
+        if @vehicle
+            erb :'vehicles/edit'
         else
-            puts "NA"
+            flash[:error] = "No vehicle found."
+            redirect '/vehicles'
         end
     end
 
-    delete 'vehicles/:id' do 
-        @vehicle = current_user.vehicles.find(params[:id])
+    patch "/vehicles/:id" do 
+
+        if @vehicle = current_user.vehicles.update(params)
+            flash[:success] = "Vehicle updated."
+            redirect "/vehicles/#{@vehicle.id}"
+        else
+            flash[:error] = "Unable to update."
+            redirect '/vehicles'
+        end
     end
 
+    put "/vehicles/:id" do 
+        @vehicle = current_user.vehicles.find(params[:id])
+    
+        if @vehicle.nil?
+            flash[:error] = "Vehicle not found."
+            redirect "/vehicles"
+        end
+    
+        vehicle_params = params[:vehicle]
+    
+    
+        if @vehicle.update(vehicle_params)
+            flash[:success] = "Vehicle updated."
+            redirect "/vehicles/#{@vehicle.id}"
+        else
+            flash[:error] = "Unable to update."
+            redirect '/vehicles'
+        end
+    end
+    delete "/vehicles/:id" do 
+        @vehicle = current_user.vehicles.find(params[:id])
+    
+        if @vehicle.nil?
+            flash[:error] = "Vehicle not found."
+            redirect "/vehicles"
+        end
+    
+        if @vehicle.destroy 
+            flash[:success] = "Vehicle has been deleted."
+            redirect "/vehicles"
+        else 
+            flash[:error] = @vehicle.errors.full_messages.join(" ") # fix later
+            redirect "/vehicles"
+        end
+    end
 end
