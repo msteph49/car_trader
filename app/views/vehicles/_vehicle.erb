@@ -11,6 +11,6 @@
 <a href="/vehicles/<%= vehicle.id %>/edit">Edit</a>
 <form action="/vehicles/<%=vehicle.id %>" method="post" >
   <input type="hidden" name="_method" value="delete">
-  <button type="sumbit" onclick="return confirm('Deleting list will permenantly listing and cannot but undone. Are you sure you want to proceed?');">Delete</button>
+  <button class="btn btn-dark btn-sm" onclick="return confirm('Deleting list will permenantly listing and cannot but undone. Are you sure you want to proceed?');">Delete</button>
 </form>
 <% end %>

@@ -46,7 +46,7 @@ class VehiclesController < ApplicationController
     end
 
     patch "/vehicles/:id" do 
-
+        # @vehicle = Vehicle.find(params[:id])
         if @vehicle = current_user.vehicles.update(params)
             flash[:success] = "Vehicle updated."
             redirect "/vehicles/#{@vehicle.id}"
