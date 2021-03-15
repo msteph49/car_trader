@@ -29,7 +29,7 @@ class VehiclesController < ApplicationController
             flash[:message] = "Created!"
             redirect "/vehicles/#{@vehicle.id}"
         else 
-            flash[:message] = @vehicle.errors.full_messages.join(" ") # Fix later on
+            flash[:message] = @vehicle.errors.full_messages.join(" ")
             redirect '/vehicles/new'
         end
     end
@@ -87,7 +87,7 @@ class VehiclesController < ApplicationController
             flash[:success] = "Vehicle has been deleted."
             redirect "/vehicles"
         else 
-            flash[:error] = @vehicle.errors.full_messages.join(" ") # fix later
+            flash[:error] = @vehicle.errors.full_messages.join(" ")
             redirect "/vehicles"
         end
     end

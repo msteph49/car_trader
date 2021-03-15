@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     validates :user_name, :name, :email, presence: true 
     validates :user_name, :email, uniqueness: true
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-    # validates :user_name, format: { with: // }
+    
 
     def to_s
         "@#{user_name}"
